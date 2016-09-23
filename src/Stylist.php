@@ -76,6 +76,11 @@
             $this->setName($new_name);
         }
 
+        function getClients()
+        {
+            
+        }
+
     }
 
  ?>
