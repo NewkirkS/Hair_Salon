@@ -1,4 +1,5 @@
 <?php
+
     class Stylist
     {
         private $id;
@@ -24,5 +25,36 @@
         {
             $this->name = $new_name;
         }
+
+        function save()
+        {
+
+        }
+
+        static function getAll()
+        {
+
+        }
+
+        static function deleteAll()
+        {
+
+        }
+
+        function delete()
+        {
+
+        }
+
+        function update()
+        {
+
+        }
+
+        function find()
+        {
+
+        }
     }
+
  ?>
