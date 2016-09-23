@@ -5,6 +5,31 @@
         <title>Clients</title>
     </head>
     <body>
+        <h1>{{ stylist.getName }}'s Clients</h1>
 
+        <h2>Add a new Client</h2>
+        <form action="/create_client" method="post">
+            <input name="stylist_id" type="hidden" value="{{ stylist.getId }}">
+            <label for="name">Name:</label>
+            <input type="text" name="name">
+            <button type="submit">Add New Client</button>
+        </form>
+
+        {% if clients is not empty %}
+            <hr>
+            <h3>Clients:</h3>
+
+            <ul>
+                {% for client in clients %}
+                    <hr>
+                    <li>{{ client.getName }}</li>
+                    <li><a href="/clients/{{ client.getId }}/update">Edit</a></li>
+                    <li><a href="/clients/{{ client.getId }}/delete">Delete</a></li>
+                    <hr>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <a href="/">Home</a>
     </body>
 </html>

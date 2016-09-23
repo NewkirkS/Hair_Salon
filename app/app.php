@@ -47,11 +47,21 @@
 
     //get route for displaying all clients of a particular stylist, goes to clients page
 
-
+    $app->get("/clients/{id}", function($id) use ($app) {
+        $stylist = Stylist::find($id);
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
 
     //post route for adding a client, goes to client page
 
-
+    $app->post("/create_client", function() use ($app) {
+        $name = $_POST['name'];
+        $stylist_id = $_POST['stylist_id'];
+        $new_client = new Client($name, $stylist_id);
+        $new_client->save();
+        $stylist = Stylist::find($stylist_id);
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
 
     //get route for going to update client page
 
