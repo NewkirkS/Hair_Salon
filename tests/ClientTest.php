@@ -207,6 +207,7 @@
 
             //Act
             $test_client->update($new_name);
+
             //Assert
             $this->assertEquals("Krampus", $test_client->getName());
         }

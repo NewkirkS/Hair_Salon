@@ -6,7 +6,7 @@
     */
 
     require_once "src/Stylist.php";
-    // require_once "src/Client.php";
+    require_once "src/Client.php";
 
     $server = "mysql:host=localhost;dbname=hair_salon_test";
     $username = "root";
@@ -172,6 +172,36 @@
 
             //Assert
             $this->assertEquals("Jill", $test_stylist->getName());
+        }
+
+        function test_getClients()
+        {
+            //Arrange
+            $stylist_name = "Sandra";
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $stylist_name2 = "Jim";
+            $test_stylist2 = new Stylist($stylist_name);
+            $test_stylist2->save();
+            $stylist_id2 = $test_stylist2->getId();
+
+            $name = "Santa";
+            $test_client = new Client($name, $stylist_id);
+            $test_client->save();
+
+            $name2 = "Krampus";
+            $test_client2 = new Client($name2, $stylist_id);
+            $test_client2->save();
+
+            $name3 = "Nicholas";
+            $test_client3 = new Client($name3, $stylist_id2);
+            $test_client3->save();
+            //Act
+            $result = $test_stylist->getClients();
+            //Assert
+            $this->assertEquals([$test_client, $test_client2], $result);
         }
 
     }
