@@ -20,7 +20,7 @@
             //Arrange
             $id = 1;
             $name = "Santa";
-            $test_client = new Client($name, $id);
+            $test_client = new Client($name, null, $id);
 
             //Act
             $result = $test_client->getId();
@@ -55,6 +55,24 @@
 
             //Assert
             $this->assertEquals($new_name, $test_client->getName());
+        }
+
+        function test_getStylistId()
+        {
+            //Arrange
+            $stylist_name = "Sandra";
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $name = "Santa";
+            $test_client = new Client($name, $stylist_id);
+
+            //Act
+            $result = $test_client->getStylistId();
+
+            //Assert
+            $this->assertEquals($stylist_id, $result);
         }
     }
 
