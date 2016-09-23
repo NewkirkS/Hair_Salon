@@ -190,6 +190,26 @@
             //Assert
             $this->assertEquals([$test_client2], $result);
         }
+
+        function test_update()
+        {
+            //Arrange
+            $stylist_name = "Sandra";
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $name = "Santa";
+            $test_client = new Client($name, $stylist_id);
+            $test_client->save();
+
+            $new_name = "Krampus";
+
+            //Act
+            $test_client->update($new_name);
+            //Assert
+            $this->assertEquals("Krampus", $test_client->getName());
+        }
     }
 
  ?>
