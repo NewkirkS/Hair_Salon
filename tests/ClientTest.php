@@ -29,19 +29,19 @@
             $this->assertEquals($id, $result);
         }
 
-        // function test_getName()
-        // {
-        //     //Arrange
-        //     $name = "Jim";
-        //     $test_client = new Client($name);
-        //
-        //     //Act
-        //     $result = $test_client->getName();
-        //
-        //     //Assert
-        //     $this->assertEquals($name, $result);
-        // }
-        //
+        function test_getName()
+        {
+            //Arrange
+            $name = "Santa";
+            $test_client = new Client($name);
+
+            //Act
+            $result = $test_client->getName();
+
+            //Assert
+            $this->assertEquals($name, $result);
+        }
+
         // function test_setName()
         // {
         //     //Arrange
