@@ -4,10 +4,10 @@
     require_once __DIR__."/../src/Client.php";
     require_once __DIR__."/../src/Stylist.php";
 
-    use Symfony\Component\Debug\Debug;
-    Debug::enable();
 
     $app = new Silex\Application();
+
+    $app['debug'] = true;
 
     $server = 'mysql:host=localhost;dbname=hair_salon'; //Check port for localhost in mamp
     $username = 'root';
@@ -18,8 +18,8 @@
         'twig.path' => __DIR__.'/../views'
     ));
 
-    // use Symfony\Component\HttpFoundation\Request;
-    // Request::enableHttpMethodParameterOverride();
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
 
     //STYLIST ROUTES
 
@@ -46,7 +46,12 @@
 
     //patch route to change stylist, goes back to index
 
-
+    $app->patch("/stylists/{id}", function($id) use ($app) {
+        $new_name = $_POST['name'];
+        $stylist = Stylist::find($id);
+        $stylist->update($new_name);
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
 
     //delete route for deleting a single stylist, goes back to index
 
