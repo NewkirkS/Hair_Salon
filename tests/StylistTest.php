@@ -157,5 +157,21 @@
             $this->assertEquals([$test_stylist2, $test_stylist3], $result);
         }
 
+        function test_update()
+        {
+            //Arrange
+            $name = "Jim";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+
+            $new_name = "Jill";
+
+            //Act
+            $test_stylist->update($new_name);
+
+            //Assert
+            $this->assertEquals("Jill", $test_stylist->getName());
+        }
+
     }
  ?>
