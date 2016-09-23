@@ -15,6 +15,12 @@
 
     class ClientTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Stylist::deleteAll();
+            Client::deleteAll();
+        }
+
         function test_getId()
         {
             //Arrange
@@ -73,6 +79,68 @@
 
             //Assert
             $this->assertEquals($stylist_id, $result);
+        }
+
+        function test_save()
+        {
+            //Arrange
+            $stylist_name = "Sandra";
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $name = "Santa";
+            $test_client = new Client($name, $stylist_id);
+
+            //Act
+            $test_client->save();
+            $result = Client::getAll();
+            //Assert
+            $this->assertEquals([$test_client], $result);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $stylist_name = "Sandra";
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $name = "Santa";
+            $test_client = new Client($name, $stylist_id);
+            $test_client->save();
+
+            $name2 = "Krampus";
+            $test_client2 = new Client($name2, $stylist_id);
+            $test_client2->save();
+            //Act
+
+            $result = Client::getAll();
+            //Assert
+            $this->assertEquals([$test_client, $test_client2], $result);
+        }
+
+        function test_deleteAll()
+        {
+            //Arrange
+            $stylist_name = "Sandra";
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $name = "Santa";
+            $test_client = new Client($name, $stylist_id);
+            $test_client->save();
+
+            $name2 = "Krampus";
+            $test_client2 = new Client($name2, $stylist_id);
+            $test_client2->save();
+            //Act
+            Client::deleteAll();
+            $result = Client::getAll();
+            //Assert
+            $this->assertEquals([], $result);
         }
     }
 
