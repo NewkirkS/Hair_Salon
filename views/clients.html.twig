@@ -24,7 +24,12 @@
                     <hr>
                     <li>{{ client.getName }}</li>
                     <li><a href="/clients/{{ client.getId }}/update">Edit</a></li>
-                    <li><a href="/clients/{{ client.getId }}/delete">Delete</a></li>
+                    <li>
+                        <form action="/clients/{{ client.getId }}" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit">Delete Client</button>
+                        </form>
+                    </li>
                     <hr>
                 {% endfor %}
             </ul>

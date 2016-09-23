@@ -55,7 +55,11 @@
 
     //delete route for deleting a single stylist, goes back to index
 
-
+    $app->delete("/stylists/{id}", function($id) use ($app) {
+        $stylist = Stylist::find($id);
+        $stylist->delete();
+        return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
+    });
 
     //CLIENT ROUTES
 
