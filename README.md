@@ -14,14 +14,12 @@ _Website allowing user to manage stylists and their clients._
 | ------------- |-------------| -----|
 | 1: Store new stylists | "Jim" | "Jim" |
 | 2: Display a list of all stylists stored | "Jim", "Jen" | "Jim", "Jen" |
-| 3: Delete all stored stylists | Click delete all button | *Empty stylist list* |
-| 4: Delete a specific stylist from the list | Click delete button on "Jim" | "Jim" deleted |
-| 5: Update a specific stylist from the list | "Jim": new name = "Jill" | "Jill" |
-| 6: Store clients of particular stylists | "Jim" > "Jennifer" | "Jennifer" |
-| 7: Display a list of all of a stylist's clients | Click "Jim" | "Jennifer", "Jason" |
-| 8: Delete all clients from a stylist | Click delete all clients on "Jim" | *Empty client list* |
-| 9: Delete a specific client from a stylist | Click delete on "Jennifer" | *Deleted* |
-| 10: Update a Client in a cuisine | New Name = "Jasper" | "Jennifer" -> "Jasper" |
+| 3: Delete a specific stylist from the list | Click delete button on "Jim" | "Jim" deleted |
+| 4: Update a specific stylist from the list | "Jim": new name = "Jill" | "Jill" |
+| 5: Store clients of particular stylists | "Jim" > "Jennifer" | "Jennifer" |
+| 6: Display a list of all of a stylist's clients | Click "Jim" | "Jennifer", "Jason" |
+| 7: Delete a specific client from a stylist | Click delete on "Jennifer" | *Deleted* |
+| 8: Update a Client in a cuisine | New Name = "Jasper" | "Jennifer" -> "Jasper" |
 
 
 
