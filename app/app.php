@@ -4,6 +4,9 @@
     require_once __DIR__."/../src/Client.php";
     require_once __DIR__."/../src/Stylist.php";
 
+    use Symfony\Component\Debug\Debug;
+    Debug::enable();
+
     $app = new Silex\Application();
 
     $server = 'mysql:host=localhost;dbname=hair_salon'; //Check port for localhost in mamp
@@ -14,6 +17,9 @@
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
     ));
+
+    // use Symfony\Component\HttpFoundation\Request;
+    // Request::enableHttpMethodParameterOverride();
 
     //STYLIST ROUTES
 
@@ -33,9 +39,12 @@
 
     //get route for going to update page for particular stylist
 
+    $app->get("/stylists/{id}/update", function($id) use ($app){
+        $stylist = Stylist::find($id);
+        return $app['twig']->render("update_stylist.html.twig", array('stylist' => $stylist));
+    });
 
-
-    //update route to change stylist, goes back to index
+    //patch route to change stylist, goes back to index
 
 
 
