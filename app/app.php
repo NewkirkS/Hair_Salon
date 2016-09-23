@@ -29,7 +29,7 @@
         return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    // post route for creating a stylist, goes back to index
+    // post route for creating a stylist, goes back to home
 
     $app->post("/create_stylist", function() use ($app) {
         $new_stylist = new Stylist($_POST['name']);
@@ -44,7 +44,7 @@
         return $app['twig']->render("update_stylist.html.twig", array('stylist' => $stylist));
     });
 
-    //patch route to change stylist, goes back to index
+    //patch route to change stylist, goes back to client page
 
     $app->patch("/stylists/{id}", function($id) use ($app) {
         $new_name = $_POST['name'];
@@ -53,7 +53,7 @@
         return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
-    //delete route for deleting a single stylist, goes back to index
+    //delete route for deleting a single stylist, goes back to home
 
     $app->delete("/stylists/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
@@ -95,13 +95,19 @@
         $client = Client::find($id);
         $client->update($new_name);
         $stylist_id = $client->getStylistId();
-        $stylist = stylist::find($stylist_id);
+        $stylist = Stylist::find($stylist_id);
         return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
     //delete route for individual client, goes back to client page
 
-
+    $app->delete("/clients/{id}", function($id) use ($app) {
+        $client = Client::find($id);
+        $stylist_id = $client->getStylistId();
+        $client->delete();
+        $stylist =Stylist::find($stylist_id);
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
 
     return $app;
 ?>
