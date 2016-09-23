@@ -55,8 +55,7 @@
         {
             $found_stylist = null;
             $stylists = Stylist::getAll();
-            foreach($stylists as $stylist)
-            {
+            foreach($stylists as $stylist) {
                 $stylist_id = $stylist->getId();
                 if ($stylist_id == $search_id) {
                     $found_stylist = $stylist;
@@ -78,7 +77,7 @@
 
         function getClients()
         {
-            
+
         }
 
     }
