@@ -79,11 +79,21 @@
 
     //get route for going to update client page
 
-
+    $app->get("/clients/{id}/update", function($id) use ($app){
+        $client = Client::find($id);
+        return $app['twig']->render("update_client.html.twig", array('client' => $client));
+    });
 
     //update route for updating client, goes back to client page
 
-
+    $app->patch("/clients/{id}", function($id) use ($app) {
+        $new_name = $_POST['name'];
+        $client = Client::find($id);
+        $client->update($new_name);
+        $stylist_id = $client->getStylistId();
+        $stylist = stylist::find($stylist_id);
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
 
     //delete route for individual client, goes back to client page
 

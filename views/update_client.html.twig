@@ -5,6 +5,18 @@
         <title>Update a Client</title>
     </head>
     <body>
+        <h1>Update {{ client.getName }}'s info</h1>
+        <hr>
 
+        <form action="/clients/{{ client.getId }}" method="post">
+            <input type="hidden" name="_method" value="patch">
+
+            <label for="name">Enter new name:</label>
+            <input type="text" name="name">
+            <button type="submit">Update</button>
+        </form>
+
+        <hr>
+        <a href="/">Home</a>
     </body>
 </html>
