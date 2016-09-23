@@ -67,7 +67,7 @@
 
         function delete()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM stylist WHERE id = {$this->getId()};");
         }
 
         function update()
