@@ -19,7 +19,7 @@ _Website allowing user to manage stylists and their clients._
 | 5: Store clients of particular stylists | "Jim" > "Jennifer" | "Jennifer" |
 | 6: Display a list of all of a stylist's clients | Click "Jim" | "Jennifer", "Jason" |
 | 7: Delete a specific client from a stylist | Click delete on "Jennifer" | *Deleted* |
-| 8: Update a Client in a cuisine | New Name = "Jasper" | "Jennifer" -> "Jasper" |
+| 8: Update a Client | New Name = "Jasper" | "Jennifer" -> "Jasper" |
 
 
 
@@ -59,7 +59,7 @@ _In Terminal:_
 
 `CREATE TABLE client (id serial PRIMARY KEY, name VARCHAR (255), stylist_id INT);`
 
-****Make copy of hair_salon named hair_salon_test in PHPMyAdmin, copying all tables and columns but no data.****
+_Make copy of hair_salon named hair_salon_test in PHPMyAdmin, copying all tables and columns but no data._
 
 ## Known Bugs
 
